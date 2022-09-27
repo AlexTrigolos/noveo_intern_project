@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   end
   root 'pages#index'
   resources :bookings
-  resources :reviews, only: [:index, :create]
+  resources :reviews, only: [:index, :create, :show]
   resources :rooms, only: [:index, :show]
 end
