@@ -1,2 +1,16 @@
-<h1>Reviews#index</h1>
-<p>Find me in app/views/reviews/index.html.erb</p>
+<%= render "form", review: @review %>
+
+<h1>Reviews</h1>
+
+<div id="reviews">
+  <% @reviews.each do |review| %>
+    <div class="well well-lg">
+    <% if review.status == 'published' %>
+      <%= render review %>
+      <p>
+        <%= link_to "Show this review", review %>
+      </p>
+    <% end %>
+    </div>
+  <% end %>
+</div>
