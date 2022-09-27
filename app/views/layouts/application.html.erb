@@ -12,10 +12,12 @@
 
   <body>
     <%= render 'layouts/navbar' %>
+    <%= render 'shared/notice' %>
     <main>
       <div class="container">
         <%= yield %>
       </div>
     </main>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
