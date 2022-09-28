@@ -1,2 +1,9 @@
-<h1>Admin::Reviews#index</h1>
-<p>Find me in app/views/admin/reviews/index.html.erb</p>
+<p style="color: green"><%= notice %></p>
+
+<h1>Reviews</h1>
+
+<div id="admin_reviews">
+  <% @admin_reviews.each do |review| %>
+        <%= render review %>
+  <% end %>
+</div>
