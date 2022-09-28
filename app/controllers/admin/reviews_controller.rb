@@ -3,7 +3,7 @@ class Admin::ReviewsController < ApplicationController
 
   # GET /admin/reviews
   def index
-    @admin_reviews = Review.all.where(published: :false)
+    @admin_reviews = Admin::Review.all.where(published: :false)
   end
 
   # GET /admin/reviews/1
@@ -32,6 +32,6 @@ class Admin::ReviewsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_review
-      @admin_review = Review.find(params[:id])
+      @admin_review = Admin::Review.find(params[:id])
     end
 end
