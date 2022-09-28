@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
   # POST /reviews
   def create
     @review = Review.new(review_params)
+    @review.published = false
     if @review.save
       flash[:success] = "Review was successfully created. Admin will check it."
       redirect_to review_path(@review)
@@ -26,7 +27,7 @@ class ReviewsController < ApplicationController
   private
 
   def all_published_reviews
-    Review.all.where(status: "published")
+    Review.all.where(published: :true)
   end
 
   # Only allow a list of trusted parameters through.

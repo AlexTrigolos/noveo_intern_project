@@ -4,7 +4,7 @@ class CreateReviews < ActiveRecord::Migration[7.0]
       t.string :name, null: false
       t.string :email, null: false
       t.text :review, null: false
-      t.integer :status, default: 0, null: false
+      t.boolean :published, default: false, null: false
 
       t.timestamps
     end

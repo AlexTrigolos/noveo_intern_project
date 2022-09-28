@@ -5,7 +5,7 @@
 <div id="reviews">
   <% @reviews.each do |review| %>
     <div class="well well-lg">
-    <% if review.status == 'published' %>
+    <% if review.published %>
       <%= render review %>
       <p>
         <%= link_to "Show this review", review %>
