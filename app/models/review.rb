@@ -5,7 +5,4 @@ class Review < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX }
   validates :review, presence: true, length: { minimum: 5, maximum: 1000 }
   before_save { self.email = email.downcase }
-
-  enum status: %i[unpublished published]
-  validates :status, inclusion: { in: statuses.keys }
 end
