@@ -1,2 +1,10 @@
-<h1>Admin::Rooms#show</h1>
-<p>Find me in app/views/admin/rooms/show.html.erb</p>
+<p style="color: green"><%= notice %></p>
+
+<%= render @admin_room %>
+
+<div>
+  <%= link_to "Edit this room", edit_admin_room_path(@admin_room) %> |
+  <%= link_to "Back to rooms", admin_rooms_path %>
+
+  <%= button_to "Destroy this room", @admin_room, method: :delete %>
+</div>

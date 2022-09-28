@@ -15,6 +15,17 @@
         <li class="nav-item">
           <%= link_to 'BOOKINGS', bookings_path, class: 'nav-link' %>
         </li>
+        <% if Rails.env.development? %>
+          <li class="nav-item">
+            <%= link_to 'ADMIN REVIEWS', admin_reviews_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ADMIN ROOMS', admin_rooms_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ADMIN BOOKINGS', admin_bookings_path, class: 'nav-link' %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
