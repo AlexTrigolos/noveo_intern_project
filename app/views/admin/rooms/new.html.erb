@@ -1,2 +1,9 @@
-<h1>Admin::Rooms#new</h1>
-<p>Find me in app/views/admin/rooms/new.html.erb</p>
+<h1>New room</h1>
+<% p @admin_room %>
+<%= render "form", admin_room: @admin_room %>
+
+<br>
+
+<div>
+  <%= link_to "Back to rooms", admin_rooms_path %>
+</div>
