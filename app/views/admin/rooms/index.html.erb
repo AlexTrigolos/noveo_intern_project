@@ -1,2 +1,25 @@
-<h1>Admin::Rooms#index</h1>
-<p>Find me in app/views/admin/rooms/index.html.erb</p>
+<h1>Rooms</h1>
+<table border="1">
+  <tr>
+    <th>id</th>
+    <th>Room name</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Show</th>
+    <th>Update</th>
+    <th>Destroy</th>
+  </tr>
+  <% @admin_rooms.each do |admin_room| %>
+    <tr>
+      <td><%= admin_room.id %></td>
+      <td><%= admin_room.room_name %></td>
+      <td><%= admin_room.created_at %></td>
+      <td><%= admin_room.updated_at %></td>
+      <td><%= button_to "Show #{admin_room.id}", admin_room_path(admin_room), method: :get %></td>
+      <td><%= button_to "Update #{admin_room.id}", edit_admin_room_path(admin_room), method: :get %></td>
+      <td><%= button_to "Destroy #{admin_room.id}", admin_room_path(admin_room), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "New room", new_admin_room_path %>

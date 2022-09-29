@@ -1,2 +1,20 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 2px;
+}
+
+input[type=text], textarea {
+  width: 500px;
+}
+
+textarea {
+  height: 50px
+}
+
+.button_to {
+  display: inline-flex;
+}

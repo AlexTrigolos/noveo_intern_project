@@ -1,0 +1,26 @@
+<div id="<%= dom_id room %>">
+  <p>
+    <strong>Room name:</strong>
+    <%= room.room_name %>
+  </p>
+
+  <p>
+    <strong>Short description:</strong>
+    <%= room.short_description %>
+  </p>
+
+  <p>
+    <strong>Long description:</strong>
+    <%= room.long_description %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= room.price %>
+  </p>
+
+  <% @room_photos.each do |p| %>
+    <%= image_tag p.photo_url %>
+  <% end %>
+
+</div>

@@ -1,2 +1,10 @@
-<h1>Admin::Rooms#edit</h1>
-<p>Find me in app/views/admin/rooms/edit.html.erb</p>
+<h1>Editing room</h1>
+
+<%= render "form", admin_room: @admin_room %>
+
+<br>
+
+<div>
+  <%= link_to "Show this room", @admin_room %> |
+  <%= link_to "Back to rooms", admin_rooms_path %>
+</div>
