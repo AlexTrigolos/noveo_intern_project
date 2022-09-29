@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :bookings
   resources :reviews, only: [:index, :create, :show]
   resources :rooms, only: [:index, :show]
+  resources :room_photos, except: :new
 end

@@ -1,5 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Rooms</h1>
 <table border="1">
   <tr>
@@ -7,6 +5,7 @@
     <th>Room name</th>
     <th>Created at</th>
     <th>Updated at</th>
+    <th>Show</th>
     <th>Update</th>
     <th>Destroy</th>
   </tr>
@@ -16,18 +15,11 @@
       <td><%= admin_room.room_name %></td>
       <td><%= admin_room.created_at %></td>
       <td><%= admin_room.updated_at %></td>
+      <td><%= button_to "Show #{admin_room.id}", admin_room_path(admin_room), method: :get %></td>
       <td><%= button_to "Update #{admin_room.id}", edit_admin_room_path(admin_room), method: :get %></td>
       <td><%= button_to "Destroy #{admin_room.id}", admin_room_path(admin_room), method: :delete %></td>
     </tr>
   <% end %>
 </table>
-<!--<div id="admin_rooms">-->
-  <%# @admin_rooms.each do |admin_room| %>
-    <%#= render admin_room %>
-<!--    <p>-->
-      <%#= link_to "Show this room", admin_room %>
-<!--    </p>-->
-  <%# end %>
-<!--</div>-->
 
 <%= link_to "New room", new_admin_room_path %>
