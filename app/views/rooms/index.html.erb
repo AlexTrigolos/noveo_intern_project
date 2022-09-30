@@ -1,2 +1,9 @@
-<h1>Rooms#index</h1>
-<p>Find me in app/views/rooms/index.html.erb</p>
+<h1>Rooms</h1>
+
+<div id="rooms">
+  <% @rooms.each do |room| %>
+    <div class="well well-lg">
+      <%= render room %>
+    </div>
+  <% end %>
+</div>
