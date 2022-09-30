@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
   private
 
   def all_published_reviews
-    Review.all.where(published: :true)
+    Review.all.where(published: :true).order(created_at: :desc)
   end
 
   # Only allow a list of trusted parameters through.
