@@ -8,6 +8,7 @@ class RoomPhotosController < ApplicationController
 
   # GET /room_photos/1
   def show
+    p @room_photo.room
   end
 
   # GET /room_photos/new
