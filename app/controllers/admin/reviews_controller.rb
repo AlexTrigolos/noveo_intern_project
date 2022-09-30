@@ -3,7 +3,7 @@ class Admin::ReviewsController < ApplicationController
 
   # GET /admin/reviews
   def index
-    @admin_reviews = Admin::Review.all.where(published: :false)
+    @admin_reviews = Admin::Review.all.where(published: :false).order(created_at: :desc)
   end
 
   # GET /admin/reviews/1
