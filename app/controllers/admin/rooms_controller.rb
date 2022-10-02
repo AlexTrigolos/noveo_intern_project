@@ -28,7 +28,7 @@ class Admin::RoomsController < ApplicationController
       flash[:success] = "Room was successfully created."
       redirect_to admin_room_url(@admin_room)
     else
-      render :new, status: :bad_request
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -39,7 +39,7 @@ class Admin::RoomsController < ApplicationController
       flash[:success] = "Room was successfully updated."
       redirect_to admin_room_url(@admin_room)
     else
-      render :edit, status: :bad_request
+      render :edit, status: :unprocessable_entity
     end
   end
 

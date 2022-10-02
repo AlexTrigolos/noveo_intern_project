@@ -1,0 +1,9 @@
+<%= form_with url: "/bookings", method: :get, :html => { class: 'form-horizontal' } do |form| %>
+    <%= form.label :query, "Search" %>
+  <div class="form-group">
+    <div class="col-sm-5">
+      <%= form.text_field :query, value: @query %>
+    </div>
+  </div>
+  <%= form.submit "Search" %>
+<% end %>

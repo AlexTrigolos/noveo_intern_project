@@ -1,2 +1,8 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<%= render @booking %>
+
+<div>
+  <%= link_to "Edit this booking", edit_booking_path(@booking.booking_token) %> |
+  <%= link_to "Back to bookings", bookings_path %>
+
+  <%= button_to "Destroy this booking", booking_path(@booking.booking_token), method: :delete %>
+</div>

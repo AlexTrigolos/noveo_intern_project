@@ -29,7 +29,7 @@ class RoomPhotosController < ApplicationController
       redirect_to room_photo_url(@room_photo)
     else
       flash[:danger] = "Can't create photo"
-      render 'admin/rooms/new', status: :bad_request
+      render 'admin/rooms/new', status: :unprocessable_entity
     end
   end
 
@@ -40,7 +40,7 @@ class RoomPhotosController < ApplicationController
       redirect_to room_photo_url(@room_photo)
     else
       flash[:danger] = "Can't update photo"
-      render :edit, status: :bad_request
+      render :edit, status: :unprocessable_entity
     end
   end
 
