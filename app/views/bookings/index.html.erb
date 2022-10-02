@@ -6,7 +6,7 @@
   <% @bookings.each do |booking| %>
     <%= render booking %>
     <p>
-      <%= link_to "Show this booking", booking %>
+      <%= link_to "Show this booking", booking_path(booking.booking_token) %>
     </p>
   <% end %>
 </div>

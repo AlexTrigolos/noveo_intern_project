@@ -48,7 +48,7 @@ class BookingsController < ApplicationController
       add_cookie(booking_token)
       flash[:success] =
         "Booking was successfully created. Admin will check it. YOUR BOOKING IS \"#{booking_token}\" SAVE IT"
-      redirect_to booking_url(@booking)
+      redirect_to booking_url(@booking.booking_token)
     else
       render :new, status: :unprocessable_entity
     end
@@ -60,11 +60,12 @@ class BookingsController < ApplicationController
       params[:booking][:check_in_date] < Time.now || params[:booking][:check_in_date] >= params[:booking][:check_out_date]
       flash.now[:danger] =
         "Check your date. Check-out date must be greater than check-in date and check-in can't be less than today"
-      render :edit, status: :unprocessable_entity
-    elsif @booking.update(booking_params) && @booking.update(confirmed: :false)
+      return render :edit, status: :unprocessable_entity
+    end
+    if @booking.update(booking_params) && @booking.update(confirmed: :false)
       add_cookie(@booking.booking_token)
       flash[:success] = "Booking was successfully updated."
-      redirect_to booking_url(@booking)
+      redirect_to booking_url(@booking.booking_token)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -98,7 +99,7 @@ class BookingsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_booking
-    @booking = Booking.find(params[:id])
+    @booking = Booking.find_by(booking_token: params[:id])
   end
 
   # Only allow a list of trusted parameters through.
