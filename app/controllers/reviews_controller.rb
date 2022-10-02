@@ -13,14 +13,13 @@ class ReviewsController < ApplicationController
   # POST /reviews
   def create
     @review = Review.new(review_params)
-    @review.published = false
     if @review.save
       flash[:success] = "Review was successfully created. Admin will check it."
       redirect_to review_path(@review)
     else
       flash.now[:danger] = "You have errors in the form."
       @reviews = all_published_reviews
-      render 'reviews/index', status: :bad_request
+      render 'reviews/index', status: :unprocessable_entity
     end
   end
 
