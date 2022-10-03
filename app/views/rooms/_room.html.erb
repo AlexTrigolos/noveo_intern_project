@@ -1,8 +1,9 @@
 <div id="<%= dom_id room %>">
-  <p>
-    <strong>Room name:</strong>
-    <%= room.room_name %>
-  </p>
+  <h2>
+    <strong>
+      <%= link_to "#{room.room_name}", room_path(room) %>
+    </strong>
+  </h2>
 
   <p>
     <strong>Short description:</strong>

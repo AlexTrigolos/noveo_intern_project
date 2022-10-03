@@ -13,6 +13,10 @@ class BookingsController < ApplicationController
       @bookings = @bookings.or(Booking.where(booking_token: cookies["best-hotel_#{index}"]))
       index += 1
     end
+    if current_user
+      @bookings = @bookings.or(Booking.where(email: current_user.email))
+    end
+    @bookings = @bookings.order(check_in_date: :asc).where('check_in_date >= ?', Time.now.to_s)
   end
 
   # GET /bookings/1

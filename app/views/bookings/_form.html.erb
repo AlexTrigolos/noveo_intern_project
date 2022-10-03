@@ -1,4 +1,4 @@
-<%= form_with(model: booking, url: booking_path(booking.booking_token)) do |form| %>
+<%= form_with(model: booking, url: params[:action] == 'new' ? bookings_path : booking_path(booking.booking_token)) do |form| %>
   <% if booking.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -13,7 +13,11 @@
 
   <div>
     <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+    <% if current_user %>
+      <%= form.text_field :email, value: "#{current_user.email}" %>
+    <% else %>
+      <%= form.text_field :email, autofocus: true %>
+    <% end %>
   </div>
 
   <div>
@@ -28,7 +32,11 @@
 
   <div>
     <%= form.label :number_people, style: "display: block" %>
-    <%= form.number_field :number_people %>
+    <% if current_user %>
+      <%= form.number_field :number_people, autofocus: true %>
+    <% else %>
+      <%= form.number_field :number_people %>
+    <% end %>
   </div>
 
   <div>

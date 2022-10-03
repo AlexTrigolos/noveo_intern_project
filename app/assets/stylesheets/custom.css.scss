@@ -7,14 +7,11 @@ table, th, td {
   padding: 2px;
 }
 
-input[type=text], textarea {
-  width: 500px;
+#carouselExampleIndicators {
+  width: 400px;
+  margin: 0 auto;
 }
 
-textarea {
-  height: 50px
-}
-
-.button_to {
-  display: inline-flex;
+.w-400px {
+  width: 400px;
 }
