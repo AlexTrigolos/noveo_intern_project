@@ -3,17 +3,25 @@
 
   <div>
     <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name, autofocus: true %>
+    <% if current_user %>
+      <%= form.text_field :name, value: "#{current_user.first_name}" %>
+    <% else %>
+      <%= form.text_field :name, autofocus: true %>
+    <% end %>
   </div>
 
   <div>
     <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+    <%= form.email_field :email, value: "#{current_user.email if current_user}" %>
   </div>
 
   <div>
     <%= form.label :review, style: "display: block" %>
-    <%= form.text_area :review %>
+    <% if current_user %>
+      <%= form.text_area :review, autofocus: true %>
+    <% else %>
+      <%= form.text_area :review %>
+    <% end %>
   </div>
 
   <div>

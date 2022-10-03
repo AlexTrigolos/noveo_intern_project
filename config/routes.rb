@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   namespace :admin do
     resources :bookings, only: [:index, :show, :update, :destroy]
     resources :reviews, only: [:index, :show, :update, :destroy]
