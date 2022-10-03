@@ -1,2 +1,8 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<h1>Welcome to our HOTEL</h1>
+<% @hotel_photos.each do |room_photo| %>
+  <%= image_tag("#{room_photo.photo}", alt: "room of the photo") %>
+<% end %>
+<hr/>
+<blockquote>
+  Hello, dear friends! Welcome to the main page of our hotel. Here you can leave reviews, choose rooms and book them.
+</blockquote>
