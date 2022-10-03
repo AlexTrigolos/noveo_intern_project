@@ -1,7 +1,7 @@
 <% if current_user %>
 <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    User
+    <%= "#{current_user.first_name} #{current_user.last_name}" %>
   </a>
   <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdownMenuLink">
     <li class="nav-item" align="center"><%= link_to "Update account", edit_user_registration_path, class: 'dropdown-item' %></li>
