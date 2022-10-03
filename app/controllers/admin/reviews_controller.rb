@@ -16,7 +16,7 @@ class Admin::ReviewsController < ApplicationController
       flash[:success] = "Review was successfully updated."
       redirect_to admin_reviews_path
     else
-      flash[:alert] = "Can't update now"
+      flash[:danger] = "Can't update now"
       redirect_to admin_reviews_path
     end
   end
@@ -30,8 +30,9 @@ class Admin::ReviewsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_review
-      @admin_review = Admin::Review.find(params[:id])
-    end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_admin_review
+    @admin_review = Admin::Review.find(params[:id])
+  end
 end
