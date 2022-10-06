@@ -78,3 +78,5 @@ gem 'carrierwave', '~> 2.0'
 gem "mini_magick"
 gem 'devise'
 gem 'pundit'
+gem 'redis'
+gem "sidekiq", "~> 6.5"
