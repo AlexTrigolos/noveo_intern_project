@@ -4,6 +4,7 @@ class Admin::BookingsController < ApplicationController
   # GET /admin/bookings
   def index
     @admin_bookings = Admin::Booking.all.where(confirmed: :false).order(created_at: :desc)
+    authorize @admin_bookings
   end
 
   # GET /admin/bookings/1
@@ -34,5 +35,6 @@ class Admin::BookingsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_booking
     @admin_booking = Admin::Booking.find(params[:id])
+    authorize @admin_booking
   end
 end

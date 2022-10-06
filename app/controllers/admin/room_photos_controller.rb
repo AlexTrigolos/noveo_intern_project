@@ -1,32 +1,28 @@
-class RoomPhotosController < ApplicationController
+class Admin::RoomPhotosController < ApplicationController
   before_action :set_room_photo, only: %i[ show edit update destroy ]
 
   # GET /room_photos
   def index
-    @room_photos = RoomPhoto.all.order(created_at: :desc)
+    @admin_room_photos = Admin::RoomPhoto.all.order(created_at: :desc)
+    authorize @admin_room_photos
   end
 
   # GET /room_photos/1
   def show
-    p @room_photo.room
-  end
-
-  # GET /room_photos/new
-  def new
-    @room_photo = RoomPhoto.new
   end
 
   # GET /room_photos/1/edit
   def edit
-    @room = @room_photo.room
+    @room = @admin_room_photo.room
   end
 
   # POST /room_photos
   def create
-    @room_photo = RoomPhoto.new(room_photo_params)
-    if @room_photo.save
+    @admin_room_photo = Admin::RoomPhoto.new(room_photo_params)
+    authorize @admin_room_photo
+    if @admin_room_photo.save
       flash[:success] = "Room photo was successfully created."
-      redirect_to room_photo_url(@room_photo)
+      redirect_to admin_room_photo_url(@admin_room_photo)
     else
       flash[:danger] = "Can't create photo"
       render 'admin/rooms/new', status: :unprocessable_entity
@@ -35,9 +31,9 @@ class RoomPhotosController < ApplicationController
 
   # PATCH/PUT /room_photos/1
   def update
-    if @room_photo.update(room_photo_params)
+    if @admin_room_photo.update(room_photo_params)
       flash[:success] = "Room photo was successfully updated."
-      redirect_to room_photo_url(@room_photo)
+      redirect_to admin_room_photo_url(@admin_room_photo)
     else
       flash[:danger] = "Can't update photo"
       render :edit, status: :unprocessable_entity
@@ -46,21 +42,22 @@ class RoomPhotosController < ApplicationController
 
   # DELETE /room_photos/1
   def destroy
-    @room_photo.destroy
+    @admin_room_photo.destroy
 
     flash[:success] = "Room photo was successfully destroyed."
-    redirect_to @room_photo.room
+    redirect_to @admin_room_photo.room
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_room_photo
-    @room_photo = RoomPhoto.find(params[:id])
+    @admin_room_photo = Admin::RoomPhoto.find(params[:id])
+    authorize @admin_room_photo
   end
 
   # Only allow a list of trusted parameters through.
   def room_photo_params
-    params.require(:room_photo).permit(:room_id, :photo)
+    params.require(:admin_room_photo).permit(:room_id, :photo)
   end
 end

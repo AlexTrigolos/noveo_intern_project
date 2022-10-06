@@ -1,0 +1,7 @@
+<%= render @room_photo %>
+
+<div>
+  <%= link_to "Show all rooms photos", admin_room_photos_path %> |
+  <%= link_to "Edit this room photo", edit_admin_room_photo_path(@room_photo) %> |
+  <%= link_to "ADMIN back to room of this photo", admin_room_path(@room_photo.room) %>
+</div>

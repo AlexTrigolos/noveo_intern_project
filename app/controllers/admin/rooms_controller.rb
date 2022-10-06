@@ -4,16 +4,18 @@ class Admin::RoomsController < ApplicationController
   # GET /admin/rooms
   def index
     @admin_rooms = Admin::Room.all.order(created_at: :desc)
+    authorize @admin_rooms
   end
 
   # GET /admin/rooms/1
   def show
-    @room_photos = @admin_room.room_photos.all
+    @room_photos = @admin_room.room_photos.all.order(created_at: :asc)
   end
 
   # GET /admin/rooms/new
   def new
     @admin_room = Admin::Room.new
+    authorize @admin_room
   end
 
   # GET /admin/rooms/1/edit
@@ -23,6 +25,7 @@ class Admin::RoomsController < ApplicationController
   # POST /admin/rooms
   def create
     @admin_room = Admin::Room.new(admin_room_params)
+    authorize @admin_room
     if @admin_room.save
       create_room_photos
       flash[:success] = "Room was successfully created."
@@ -56,6 +59,7 @@ class Admin::RoomsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_room
     @admin_room = Admin::Room.find(params[:id])
+    authorize @admin_room
   end
 
   def create_room_photos
