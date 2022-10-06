@@ -4,6 +4,7 @@ class Admin::ReviewsController < ApplicationController
   # GET /admin/reviews
   def index
     @admin_reviews = Admin::Review.all.where(published: :false).order(created_at: :desc)
+    authorize @admin_reviews
   end
 
   # GET /admin/reviews/1
@@ -34,5 +35,6 @@ class Admin::ReviewsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_review
     @admin_review = Admin::Review.find(params[:id])
+    authorize @admin_review
   end
 end

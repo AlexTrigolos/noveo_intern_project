@@ -4,7 +4,7 @@
   <% @room_photos.each do |room_photo| %>
     <%= render room_photo %>
     <p>
-      <%= link_to "Show this room photo", room_photo %>
+      <%= link_to "Show this room photo", admin_room_photo_path(room_photo) %>
     </p>
   <% end %>
 </div>

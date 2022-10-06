@@ -3,7 +3,7 @@
 <div>
   <%= link_to "Edit this room", edit_admin_room_path(@admin_room) %> |
   <% @admin_room.room_photos.each_with_index do |p, index| %>
-    <%= link_to "Edit photo #{index + 1}", edit_room_photo_path(p) %> |
+    <%= link_to "Edit photo #{index + 1}", edit_admin_room_photo_path(p) %> |
   <% end %>
   <%= link_to "Back to rooms", admin_rooms_path %>
 </div>
@@ -11,6 +11,6 @@
 <div>
   <%= button_to "Destroy this room", @admin_room, method: :delete %>
   <% @admin_room.room_photos.each_with_index do |p, index| %>
-    | <%= button_to "Destroy photo #{index + 1}", p, method: :delete %>
+    | <%= button_to "Destroy photo #{index + 1}", admin_room_photo_path(p), method: :delete %>
   <% end %>
 </div>
