@@ -117,6 +117,10 @@ GEM
       responders
       warden (~> 1.2.3)
     digest (3.1.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.11.0)
     execjs (2.8.1)
     ffi (1.15.5-x64-mingw32)
@@ -286,6 +290,7 @@ DEPENDENCIES
   caxlsx_rails (~> 0.6)
   debug
   devise
+  dotenv-rails
   importmap-rails
   jbuilder
   jquery-rails
