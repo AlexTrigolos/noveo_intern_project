@@ -28,6 +28,10 @@ class Admin::BookingPolicy < ApplicationPolicy
     check_user_access
   end
 
+  def confirmed_bookings?
+    check_user_access
+  end
+
   class Scope < Scope
     def resolve
       scope.all

@@ -80,3 +80,6 @@ gem 'devise'
 gem 'pundit'
 gem 'redis'
 gem "sidekiq", "~> 6.5"
+gem 'rubyzip', '~> 2'
+gem 'caxlsx', '~> 3.1'
+gem 'caxlsx_rails', '~> 0.6'

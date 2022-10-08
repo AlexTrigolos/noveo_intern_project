@@ -1,0 +1,12 @@
+<h1>Confirmed bookings</h1>
+<div class="btn-group mb3">
+  <%= link_to 'Download everything as a zip archive of xlsx files', admin_confirmed_bookings_path(format: :zip), class:'btn btn-secondary' %>
+</div>
+<div class="btn-group mb3">
+  <%= link_to 'Download everything as an xlsx file', admin_confirmed_bookings_path(format: :csv), class:'btn btn-secondary' %>
+</div>
+<div id="admin_bookings">
+  <% @admin_bookings.each do |admin_booking| %>
+    <%= render admin_booking %>
+  <% end %>
+</div>
