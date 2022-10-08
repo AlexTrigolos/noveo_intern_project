@@ -1,0 +1,14 @@
+wb = xlsx_package.workbook
+s = wb.styles
+
+right_ceil = s.add_style(alignment: { horizontal: :right })
+date_ceil = s.add_style(format_code: "yyyy-mm-dd")
+
+wb.add_worksheet(name: "Bookings") do |sheet|
+    sheet.add_row ["ID", booking.id]
+    sheet.add_row ["user email", booking.email], style: [nil, right_ceil]
+    sheet.add_row ["user check-in", booking.check_in_date], style: [nil, date_ceil]
+    sheet.add_row ["user check-out", booking.check_out_date], style: [nil, date_ceil]
+    sheet.add_row ["number of people", booking.number_people]
+    sheet.add_row ["room id", booking.room_id]
+end

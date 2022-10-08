@@ -30,7 +30,29 @@ class Admin::BookingsController < ApplicationController
     redirect_to admin_bookings_url
   end
 
+  def confirmed_bookings
+    @admin_bookings = Admin::Booking.all.where(confirmed: :true).order(created_at: :desc)
+    authorize @admin_bookings
+    respond_to do |format|
+      format.html
+      format.zip do
+        ExportBookingsJob.perform_later current_user
+        flash[:success] = "Start zip bookings"
+        redirect_to admin_confirmed_bookings_path
+      end
+      format.csv { send_data render_to_string(layout: false,
+                                              handlers: [:axlsx],
+                                              formats: [:xlsx],
+                                              template: 'admin/bookings/bookings',
+                                              locals: { bookings: @admin_bookings }),
+                             filename: 'bookings.xlsx' }
+    end
+  end
+
   private
+
+  def respond_with_zipped
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_booking
