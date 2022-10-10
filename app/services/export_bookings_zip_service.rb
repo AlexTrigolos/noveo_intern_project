@@ -1,4 +1,4 @@
-class ExportBookingsService < ApplicationService
+class ExportBookingsZipService < ApplicationService
   def call
     renderer = ActionController::Base.new
     compressed_filestream = Zip::OutputStream.write_buffer do |zos|
