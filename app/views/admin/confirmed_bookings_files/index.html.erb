@@ -1,0 +1,10 @@
+<h1>Confirmed bookings files</h1>
+
+<div id="admin_confirmed_bookings_files">
+  <% @admin_confirmed_bookings_files.each_with_index do |admin_confirmed_bookings_file, index| %>
+    <%= render admin_confirmed_bookings_file %>
+    <p>
+      <%= link_to "Download", download_admin_confirmed_bookings_file_path(admin_confirmed_bookings_file) %>
+    </p>
+  <% end %>
+</div>

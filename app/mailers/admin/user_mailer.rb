@@ -1,5 +1,5 @@
 class Admin::UserMailer < ApplicationMailer
-  def export_bookings
+  def export_bookings_zip
     @user = params[:user]
     stream = params[:stream]
 

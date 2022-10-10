@@ -36,23 +36,21 @@ class Admin::BookingsController < ApplicationController
     respond_to do |format|
       format.html
       format.zip do
-        ExportBookingsJob.perform_later current_user
+        ExportBookingsZipJob.perform_later current_user
         flash[:success] = "Start zip bookings"
-        redirect_to admin_confirmed_bookings_path
+        redirect_to confirmed_bookings_admin_bookings_path
       end
-      format.csv { send_data render_to_string(layout: false,
-                                              handlers: [:axlsx],
-                                              formats: [:xlsx],
-                                              template: 'admin/bookings/bookings',
-                                              locals: { bookings: @admin_bookings }),
-                             filename: 'bookings.xlsx' }
+      format.csv do
+        file_name = "#{Time.now.strftime("%Y-%m-%d_%H-%M-%S")}.csv"
+        ExportBookingsCsvJob.perform_later(file_name)
+
+        flash[:success] = "Start csv all bookings with name \"confirmed_bookings#{file_name}\""
+        redirect_to admin_confirmed_bookings_files_path
+      end
     end
   end
 
   private
-
-  def respond_with_zipped
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_booking
