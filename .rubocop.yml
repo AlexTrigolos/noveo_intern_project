@@ -1,0 +1,27 @@
+# This is the configuration used to check the rubocop source code.
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0.4
+  Exclude:
+    - 'db/schema.rb'
+    - 'bin/*'
+    - 'db/migrate/20221003114854_devise_create_users.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/environments/production.rb'
+    - 'config/environments/development.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'app/jobs/export_bookings_csv_job.rb'
+    - 'app/controllers/bookings_controller.rb'

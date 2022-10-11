@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExportBookingsZipJob < ApplicationJob
   queue_as :default
 
