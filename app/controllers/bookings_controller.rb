@@ -1,27 +1,18 @@
+# frozen_string_literal: true
+
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[ show edit update destroy ]
+  before_action :set_booking, only: %i[show edit update destroy]
 
   # GET /bookings
   def index
     @bookings = Booking.where(booking_token: params[:query]) || []
-    index = 1
-    unless cookies["best-hotel_#{index}"].nil?
-      @bookings = Booking.where(booking_token: cookies["best-hotel_#{index}"]).or(Booking.where(booking_token: params[:query]))
-    end
-    index = 2
-    until cookies["best-hotel_#{index}"].nil?
-      @bookings = @bookings.or(Booking.where(booking_token: cookies["best-hotel_#{index}"]))
-      index += 1
-    end
-    if current_user
-      @bookings = @bookings.or(Booking.where(email: current_user.email))
-    end
-    @bookings = @bookings.order(check_in_date: :asc).where('check_in_date >= ?', Time.now.to_s)
+    find_by_cookies
+    @bookings = @bookings.or(Booking.where(email: current_user.email)) if current_user
+    @bookings = @bookings.order(check_in_date: :asc).where('check_in_date >= ?', Time.now.getlocal.to_s)
   end
 
   # GET /bookings/1
-  def show
-  end
+  def show; end
 
   # GET /bookings/new
   def new
@@ -29,29 +20,22 @@ class BookingsController < ApplicationController
   end
 
   # GET /bookings/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /bookings
+  # rubocop:disable Metrics/MethodLength
   def create
-    @booking = Booking.new(booking_params)
-    booking_token = SecureRandom.base58(24 + rand(17))
-    until Booking.find_by(booking_token: booking_token).nil?
-      booking_token = SecureRandom.base58(24 + rand(17))
-    end
-    @booking.booking_token = booking_token
-    @booking.room_id = params[:room]
+    create_params
     if @booking.check_in_date.nil? || @booking.check_out_date.nil? ||
-      @booking.check_in_date < Time.now || @booking.check_in_date >= @booking.check_out_date
+       @booking.check_in_date < Time.now.getlocal || @booking.check_in_date >= @booking.check_out_date
       flash.now[:danger] =
         "Check your date. Check-out date must be greater than check-in date and check-in can't be less than today"
-      return render :new, status: :unprocessable_entity
-    end
-    if @booking.save
+      render :new, status: :unprocessable_entity
+    elsif @booking.save
       RoomsBooking.create!(room_id: params[:room], booking_id: @booking.id)
-      add_cookie(booking_token)
+      add_cookie(@booking_token)
       flash[:success] =
-        "Booking was successfully created. Admin will check it. YOUR BOOKING IS \"#{booking_token}\" SAVE IT"
+        "Booking was successfully created. Admin will check it. YOUR BOOKING IS \"#{@booking_token}\" SAVE IT"
       redirect_to booking_url(@booking.booking_token)
     else
       render :new, status: :unprocessable_entity
@@ -60,42 +44,64 @@ class BookingsController < ApplicationController
 
   # PATCH/PUT /bookings/1
   def update
-    if params[:booking][:check_in_date].nil? || params[:booking][:check_out_date].nil? ||
-      params[:booking][:check_in_date] < Time.now || params[:booking][:check_in_date] >= params[:booking][:check_out_date]
+    if params[:booking][:check_in_date].nil? ||
+       params[:booking][:check_out_date].nil? ||
+       params[:booking][:check_in_date] < Time.now.getlocal ||
+       params[:booking][:check_in_date] >= params[:booking][:check_out_date]
       flash.now[:danger] =
         "Check your date. Check-out date must be greater than check-in date and check-in can't be less than today"
-      return render :edit, status: :unprocessable_entity
-    end
-    if @booking.update(booking_params) && @booking.update(confirmed: :false)
+      render :edit, status: :unprocessable_entity
+    elsif @booking.update(booking_params) && @booking.update(confirmed: false)
       add_cookie(@booking.booking_token)
-      flash[:success] = "Booking was successfully updated."
+      flash[:success] = t('.success')
       redirect_to booking_url(@booking.booking_token)
     else
       render :edit, status: :unprocessable_entity
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   # DELETE /bookings/1
   def destroy
     index = 1
     until cookies["best-hotel_#{index}"].nil?
-      if cookies["best-hotel_#{index}"] == @booking.booking_token
-        cookies.delete "best-hotel_#{index}"
-      end
+      cookies.delete "best-hotel_#{index}" if cookies["best-hotel_#{index}"] == @booking.booking_token
       index += 1
     end
     @booking.destroy
 
-    flash[:success] = "Booking was successfully destroyed."
+    flash[:success] = t('.success')
     redirect_to bookings_url
   end
 
   private
 
+  def find_by_cookies
+    index = 1
+    unless cookies["best-hotel_#{index}"].nil?
+      @bookings =
+        Booking.where(booking_token: cookies["best-hotel_#{index}"]).or(Booking.where(booking_token: params[:query]))
+    end
+    index = 2
+    until cookies["best-hotel_#{index}"].nil?
+      @bookings = @bookings.or(Booking.where(booking_token: cookies["best-hotel_#{index}"]))
+      index += 1
+    end
+  end
+
+  def create_params
+    @booking = Booking.new(booking_params)
+    @booking_token = SecureRandom.base58(rand(24..40))
+    @booking_token = SecureRandom.base58(rand(24..40)) until Booking.find_by(booking_token: @booking_token).nil?
+    @booking.booking_token = @booking_token
+    @booking.room_id = params[:room]
+  end
+
   def add_cookie(booking_token)
     index = 1
     until cookies["best-hotel_#{index}"].nil?
       return if cookies["best-hotel_#{index}"] == booking_token
+
       index += 1
     end
     cookies["best-hotel_#{index}"] = booking_token

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReviewsController < ApplicationController
   # GET /reviews
   def index
@@ -14,10 +16,10 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     if @review.save
-      flash[:success] = "Review was successfully created. Admin will check it."
+      flash[:success] = t('.success')
       redirect_to review_path(@review)
     else
-      flash.now[:danger] = "You have errors in the form."
+      flash.now[:danger] = 'You have errors in the form.'
       @reviews = all_published_reviews
       render 'reviews/index', status: :unprocessable_entity
     end
@@ -26,7 +28,7 @@ class ReviewsController < ApplicationController
   private
 
   def all_published_reviews
-    Review.all.where(published: :true).order(created_at: :desc)
+    Review.all.where(published: true).order(created_at: :desc)
   end
 
   # Only allow a list of trusted parameters through.

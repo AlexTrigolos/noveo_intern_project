@@ -31,3 +31,40 @@
 
 en:
   hello: "Hello world"
+  admin:
+    user_mailer:
+      export_bookings_zip:
+        message: "The zip file you requested with data on confirmed bookings."
+    rooms:
+      destroy:
+        success: "Room was successfully destroyed."
+      update:
+        success: "Room was successfully updated."
+      create:
+        success: "Room was successfully created."
+    room_photos:
+      destroy:
+        success: "Room photo was successfully destroyed."
+      update:
+        success: "Room photo was successfully updated."
+      create:
+        success: "Room photo was successfully created."
+    reviews:
+      destroy:
+        success: "Review was successfully destroyed."
+      update:
+        danger: "Can't update now."
+        success: "Review was successfully updated."
+    bookings:
+      update:
+        danger: "Can't update now."
+        success: "Booking was successfully updated."
+      download_zip: "We started generating a zip file."
+  reviews:
+    create:
+      success: "Review was successfully created. Admin will check it."
+  bookings:
+    destroy:
+      success: "Booking was successfully destroyed."
+    update:
+      success: "Booking was successfully updated."

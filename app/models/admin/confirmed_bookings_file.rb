@@ -1,3 +1,7 @@
-class Admin::ConfirmedBookingsFile < ApplicationRecord
-  validates :room_name, presence: true
+# frozen_string_literal: true
+
+module Admin
+  class ConfirmedBookingsFile < ApplicationRecord
+    validates :file, presence: true
+  end
 end

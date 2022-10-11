@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RoomsController < ApplicationController
-  before_action :set_room, only: %i[ show ]
+  before_action :set_room, only: %i[show]
 
   # GET /rooms
   def index
@@ -13,8 +15,9 @@ class RoomsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_room
-      @room = Room.find(params[:id])
-    end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_room
+    @room = Room.find(params[:id])
+  end
 end
