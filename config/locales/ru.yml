@@ -1,0 +1,39 @@
+ru:
+  hello: "Привет мир"
+  admin:
+    user_mailer:
+      export_bookings_zip:
+        message: "Запрашиваемые вами zip файл с данными о подтверждённых бронированиях."
+    rooms:
+      destroy:
+        success: "Комната была успешно уничтожена."
+      update:
+        success: "Номер был успешно обновлен."
+      create:
+        success: "Комната была успешно создана."
+    room_photos:
+      destroy:
+        success: "Фотография комнаты была успешно уничтожена."
+      update:
+        success: "Фотография комнаты была успешно обновлена."
+      create:
+        success: "Фотография комнаты была успешно создана."
+    reviews:
+      destroy:
+        success: "Отзыв был успешно уничтожен."
+      update:
+        danger: "Не могу обновить сейчас."
+        success: "Обзор был успешно обновлен."
+    bookings:
+      update:
+        danger: "Не могу обновить сейчас."
+        success: "Бронирование было успешно обновлено."
+      download_zip: "Начали генерировать zip файл."
+  reviews:
+    create:
+      success: "Отзыв был успешно создан. Администратор проверит его."
+  bookings:
+    destroy:
+      success: "Бронирование было успешно уничтожено."
+    update:
+      success: "Бронирование было успешно обновлено."
