@@ -40,7 +40,11 @@
   </div>
 
   <div>
-    <input name="room" value="<%= params[:room] %>" type="hidden">
+    <% if params[:action] == 'new' %>
+      <input name="room" value="<%= params[:room] %>" type="hidden">
+    <% elsif params[:action] == 'edit' %>
+      <input name="room" value="<%= Booking.find_by(booking_token: @booking.booking_token).room_id %>" type="hidden">
+    <% end %>
   </div>
 
   <div>

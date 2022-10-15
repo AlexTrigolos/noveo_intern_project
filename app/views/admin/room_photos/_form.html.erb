@@ -1,5 +1,5 @@
-<%= image_tag("#{@room_photo.photo}") %>
-<%= form_for(@room_photo) do |f| %>
+<%= image_tag("#{@admin_room_photo.photo}") %>
+<%= form_for(@admin_room_photo) do |f| %>
   <div class="field">
     <%= f.label :photo %><br>
     <%= f.file_field :photo %>

@@ -6,7 +6,7 @@ class Booking < ApplicationRecord
   validates :email, length: { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
   before_save { self.email = email.downcase }
   belongs_to :room
-  validates :booking_token, length: { minimum: 24 }, uniqueness: { case_sensitive: false }
+  validates :booking_token, length: { minimum: 24 }, uniqueness: true
   validates :number_people, numericality: { greater_than: 0 }
   has_many :rooms_bookings, dependent: :destroy
 end

@@ -1,10 +1,10 @@
 <h1>Room photos</h1>
 
 <div id="room_photos">
-  <% @room_photos.each do |room_photo| %>
-    <%= render room_photo %>
+  <% @admin_room_photos.each do |admin_room_photo| %>
+    <%= render admin_room_photo %>
     <p>
-      <%= link_to "Show this room photo", admin_room_photo_path(room_photo) %>
+      <%= link_to "Show this room photo", admin_room_photo_path(admin_room_photo) %>
     </p>
   <% end %>
 </div>

@@ -60,6 +60,8 @@ en:
         danger: "Can't update now."
         success: "Booking was successfully updated."
       download_zip: "We started generating a zip file."
+      destroy:
+        success: "The booking was successfully deleted."
   reviews:
     create:
       success: "Review was successfully created. Admin will check it."
