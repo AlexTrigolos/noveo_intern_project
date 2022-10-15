@@ -6,10 +6,6 @@ module Admin
       check_user_access
     end
 
-    def new?
-      check_user_access
-    end
-
     def create?
       check_user_access
     end

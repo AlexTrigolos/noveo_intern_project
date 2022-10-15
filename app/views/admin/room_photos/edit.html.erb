@@ -1,12 +1,12 @@
 <h1>Editing room photo</h1>
 
-<%= render "form", room_photo: @room_photo %>
+<%= render "form", room_photo: @admin_room_photo %>
 
 <br>
 
 <div>
-  <%= link_to "Show this room photo", admin_room_photo_path(@room_photo) %> |
-  <%= link_to "ADMIN back to room of this photo", admin_room_path(@room_photo.room) %>
+  <%= link_to "Show this room photo", admin_room_photo_path(@admin_room_photo) %> |
+  <%= link_to "ADMIN back to room of this photo", admin_room_path(@admin_room_photo.room) %>
 
-  <%= button_to "Destroy this room photo", admin_room_photo_path(@room_photo), method: :delete %>
+  <%= button_to "Destroy this room photo", admin_room_photo_path(@admin_room_photo), method: :delete %>
 </div>

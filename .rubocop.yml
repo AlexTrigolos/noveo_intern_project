@@ -4,6 +4,7 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop
+  - rubocop-rspec
 
 AllCops:
   NewCops: enable
@@ -25,3 +26,14 @@ Metrics/AbcSize:
   Exclude:
     - 'app/jobs/export_bookings_csv_job.rb'
     - 'app/controllers/bookings_controller.rb'
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+RSpec/NestedGroups:
+  Exclude:
+    - 'spec/requests/admin/room_photos_spec.rb'
+    - 'spec/requests/admin/rooms_spec.rb'
+    - 'spec/requests/admin/reviews_spec.rb'
+    - 'spec/requests/admin/bookings_spec.rb'

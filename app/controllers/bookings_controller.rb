@@ -32,7 +32,6 @@ class BookingsController < ApplicationController
         "Check your date. Check-out date must be greater than check-in date and check-in can't be less than today"
       render :new, status: :unprocessable_entity
     elsif @booking.save
-      RoomsBooking.create!(room_id: params[:room], booking_id: @booking.id)
       add_cookie(@booking_token)
       flash[:success] =
         "Booking was successfully created. Admin will check it. YOUR BOOKING IS \"#{@booking_token}\" SAVE IT"
