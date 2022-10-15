@@ -17,6 +17,7 @@ module Admin
     def update
       if @admin_review.update(published: true)
         flash[:success] = t('.success')
+        PublishReviewJob.perform_later(@admin_review.email)
       else
         flash[:danger] = t('.danger')
       end
@@ -27,6 +28,7 @@ module Admin
     def destroy
       @admin_review.destroy
 
+      NotPublishReviewJob.perform_later(@admin_review.email)
       flash[:success] = t('.success')
       redirect_to admin_reviews_url
     end

@@ -17,6 +17,7 @@ module Admin
     def update
       if @admin_booking.update(confirmed: true)
         flash[:success] = t('.success')
+        ConfirmBookingJob.perform_later(@admin_booking.email)
       else
         flash[:danger] = t('.danger')
       end
@@ -27,6 +28,7 @@ module Admin
     def destroy
       @admin_booking.destroy
 
+      NotConfirmBookingJob.perform_later(@admin_booking.email)
       flash[:success] = t('.success')
       redirect_to admin_bookings_url
     end

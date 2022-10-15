@@ -39,3 +39,13 @@ ru:
       success: "Бронирование было успешно уничтожено."
     update:
       success: "Бронирование было успешно обновлено."
+  publish_review_mailer:
+    notice_publish:
+      publish_review: "Ваш отзыв был опубликован."
+    notice_not_publish:
+      not_publish_review: "Ваш отзыв не был опубликован."
+  confirm_booking_mailer:
+    notice_confirm:
+      confirm_booking: "Ваше бронирование было подтверждено."
+    notice_not_confirm:
+      not_confirm_booking: "Ваше бронирование было отклонено."

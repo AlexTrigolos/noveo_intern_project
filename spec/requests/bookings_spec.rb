@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe '/bookings', type: :request do
-
   let(:room) do
     Room.create!(room_name: 'room name', short_description: 'short', long_description: 'long description', price: 9.99)
   end

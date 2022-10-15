@@ -70,3 +70,13 @@ en:
       success: "Booking was successfully destroyed."
     update:
       success: "Booking was successfully updated."
+  publish_review_mailer:
+    notice_publish:
+      publish_review: "Your review has been published."
+    notice_not_publish:
+      not_publish_review: "Your review has not been published."
+  confirm_booking_mailer:
+    notice_confirm:
+      confirm_booking: "Your booking has been confirmed."
+    notice_not_confirm:
+      not_confirm_booking: "Your booking has been declined."
