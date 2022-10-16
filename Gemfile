@@ -78,6 +78,7 @@ group :test do
 end
 
 gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bullet', '~> 7.0'
 gem 'carrierwave', '~> 2.0'
 gem 'caxlsx', '~> 3.1'
 gem 'caxlsx_rails', '~> 0.6'

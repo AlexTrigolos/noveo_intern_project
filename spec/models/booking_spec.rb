@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Booking, type: :model do
-  it { is_expected.to have_many(:rooms_bookings).dependent(:destroy) }
-
   it { is_expected.to validate_presence_of(:booking_token) }
   it { is_expected.to validate_presence_of(:number_people) }
   it { is_expected.to validate_presence_of(:check_in_date) }

@@ -50,6 +50,7 @@ module Admin
 
     # DELETE /admin/rooms/1
     def destroy
+      Booking.where(room_id: @admin_room.id).each(&:destroy)
       @admin_room.destroy
 
       flash[:success] = t('.success')

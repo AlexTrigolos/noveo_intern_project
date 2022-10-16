@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms
   def index
-    @rooms = Room.all.order(created_at: :desc)
+    @rooms = Room.includes([:room_photos]).all.order(created_at: :desc)
   end
 
   # GET /rooms/1

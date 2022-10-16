@@ -13,4 +13,5 @@ RSpec.describe Admin::Room, type: :model do
   it { is_expected.to validate_presence_of(:price) }
   it { is_expected.to have_many(:room_photos).dependent(:destroy) }
   it { is_expected.to accept_nested_attributes_for(:room_photos) }
+  it { is_expected.to have_many(:rooms_bookings).dependent(:destroy) }
 end
