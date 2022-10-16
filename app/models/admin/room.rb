@@ -9,5 +9,6 @@ module Admin
                       format: { with: /\A\d{1,9}(\.\d{1,2})?\z/ }
     has_many :room_photos, dependent: :destroy
     accepts_nested_attributes_for :room_photos
+    has_many :rooms_bookings, dependent: :destroy
   end
 end
