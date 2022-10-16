@@ -1,0 +1,33 @@
+<%= form_with url: "/", method: :get, :html => { class: 'form-horizontal', align: 'center' } do |form| %>
+  <%= form.label :lat, "lat" %>
+  <%= form.text_field :lat, value: @lat %>
+  <%= form.label :lon, "lon" %>
+  <%= form.text_field :lon, value: @lon %>
+  <%= form.submit "Show weather" %>
+<% end %>
+<table align="center" border="1">
+  <tr>
+    <th>lat</th>
+    <th>lon</th>
+    <th>name</th>
+    <th>weather description</th>
+    <th>temp</th>
+    <th>feels like</th>
+    <th>humidity %</th>
+    <th>visibility m.</th>
+    <th>wind speed m/s</th>
+    <th>clouds %</th>
+  </tr>
+  <tr>
+    <td><%= @response_body_json['coord']['lat'] %></td>
+    <td><%= @response_body_json['coord']['lon'] %></td>
+    <td><%= @response_body_json['name'] %></td>
+    <td><%= @response_body_json['weather'][0]['description'] %></td>
+    <td><%= (@response_body_json['main']['temp'] - @kelvin).round(2) %></td>
+    <td><%= (@response_body_json['main']['feels_like'] - @kelvin).round(2) %></td>
+    <td><%= @response_body_json['main']['humidity'] %></td>
+    <td><%= @response_body_json['visibility'] %></td>
+    <td><%= @response_body_json['wind']['speed'] %></td>
+    <td><%= @response_body_json['clouds']['all'] %></td>
+  </tr>
+</table>

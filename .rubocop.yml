@@ -26,6 +26,7 @@ Metrics/AbcSize:
   Exclude:
     - 'app/jobs/export_bookings_csv_job.rb'
     - 'app/controllers/bookings_controller.rb'
+    - 'app/controllers/pages_controller.rb'
 
 Style/BlockComments:
   Exclude:
