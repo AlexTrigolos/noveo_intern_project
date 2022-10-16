@@ -20,7 +20,7 @@
   </p>
 
   <% @room_photos.each do |p| %>
-    <%= image_tag p.photo_url %>
+    <%= image_tag(p.photo_url alt: "failed to upload a photo of the room") %>
   <% end %>
 
 </div>

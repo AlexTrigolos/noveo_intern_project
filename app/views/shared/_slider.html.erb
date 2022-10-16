@@ -7,7 +7,7 @@
   <div class="carousel-inner">
     <% @hotel_photos.each_with_index do |room_photo, index| %>
       <div class="item <%= index == 0 ? 'active' : '' %>">
-        <%= image_tag("#{room_photo.photo}", alt: "room of the photo", class: "d-block w-400px") %>
+        <%= image_tag("#{room_photo.photo}", alt: "failed to upload a photo of the room", class: "d-block w-400px") %>
       </div>
     <% end %>
   </div>

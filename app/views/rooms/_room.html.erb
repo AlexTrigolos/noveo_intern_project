@@ -22,7 +22,7 @@
   </p>
 
   <% room.room_photos.each_with_index do |p, index| %>
-    <%= image_tag p.photo_url if params[:action] == "index" and index == 0 or params[:action] == "show" %>
+    <%= image_tag(p.photo_url, alt: "failed to upload a photo of the room") if params[:action] == "index" and index == 0 or params[:action] == "show" %>
   <% end %>
 </div>
 

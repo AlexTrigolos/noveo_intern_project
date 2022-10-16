@@ -1,4 +1,4 @@
-<%= image_tag("#{@admin_room_photo.photo}") %>
+<%= image_tag("#{@admin_room_photo.photo}", alt: "failed to upload a photo of the room") %>
 <%= form_for(@admin_room_photo) do |f| %>
   <div class="field">
     <%= f.label :photo %><br>
